@@ -6,7 +6,7 @@ import java.util.Objects;
 import static java.util.Objects.*;
 
 @Entity
-@Table(name = "TB_ROOM")
+@Table(name = "TB_ROOM", schema = "REALMEET")
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class Room {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "nr_seats")
+    @Column(name = "nr_seats", nullable = false)
     private Integer seats;
 
     @Column(name = "bl_active")
@@ -61,9 +61,9 @@ public class Room {
         if (o == null || getClass() != o.getClass()) return false;
         Room room = (Room) o;
         return Objects.equals(id, room.id) &&
-                Objects.equals(name, room.name) &&
-                Objects.equals(seats, room.seats) &&
-                Objects.equals(active, room.active);
+               Objects.equals(name, room.name) &&
+               Objects.equals(seats, room.seats) &&
+               Objects.equals(active, room.active);
     }
 
     @Override
