@@ -1,5 +1,3 @@
-CREATE DATABASE realmeet;
-
 CREATE TABLE realmeet.tb_room (
   id_room BIGINT AUTO_INCREMENT NOT NULL,
    name VARCHAR(255) NOT NULL,
