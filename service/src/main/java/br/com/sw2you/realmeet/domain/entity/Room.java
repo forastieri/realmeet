@@ -1,12 +1,29 @@
 package br.com.sw2you.realmeet.domain.entity;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+import static java.util.Objects.*;
+
+@Entity
+@Table(name = "TB_ROOM")
 public class Room {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_room")
     private Long id;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "nr_seats")
     private Integer seats;
+
+    @Column(name = "bl_active")
     private Boolean active;
+
+    public Room() {
+    }
 
     private Room(Long id, String name, Integer seats, Boolean active) {
         this.id = id;
@@ -15,7 +32,11 @@ public class Room {
         this.active = active;
     }
 
-    public Room() {
+    @PrePersist
+    public void prePersist(){
+        if(isNull(active)) {
+            active = true;
+        }
     }
 
     public Long getId() {
@@ -47,7 +68,7 @@ public class Room {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, seats, active);
+        return hash(id, name, seats, active);
     }
 
     @Override
